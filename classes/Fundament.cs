@@ -1,58 +1,78 @@
+using System;
+
 public class Fundament : IFundament
 {
     public void CheckOddOrEven(double a)
     {
-        throw new NotImplementedException();
+        // Check if the number is an integer
+        if (a % 1 != 0)
+        {
+            Console.WriteLine($"{a} is not an integer.");
+            return;
+        }
+
+        long number = (long)a;
+        if (number % 2 == 0)
+        {
+            Console.WriteLine($"{number} is even.");
+        }
+        else
+        {
+            Console.WriteLine($"{number} is odd.");
+        }
     }
 
     public string GetAInterestingFact(string fact)
     {
-        throw new NotImplementedException();
+        return fact;
     }
 
     public void SumTwoNumbers()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Enter the first number:");
+        double num1 = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("Enter the second number:");
+        double num2 = Convert.ToDouble(Console.ReadLine());
+        double sum = num1 + num2;
+        Console.WriteLine($"The sum of {num1} and {num2} is {sum}.");
     }
 
     public double SumTwoNumbersOfGivenType(double a, double b)
     {
-        throw new NotImplementedException();
+        return a + b;
     }
-
 
     // Extra challenges
 
     public void PrintFibonnaciSeries()
     {
-        // TODO: Implement the Fibonacci sequence
-        int a = 0;
-        int b = 1;
-        int c;
-
-        /* 
-        c = a + b
-        a = b
-        b = c
-        */
+        int a = 0, b = 1;
+        Console.Write("Fibonacci Series: ");
+        Console.Write($"{a} {b} ");
+        // Printing the first 20 Fibonacci numbers (first two already printed)
+        for (int i = 2; i < 20; i++)
+        {
+            int c = a + b;
+            Console.Write($"{c} ");
+            a = b;
+            b = c;
+        }
+        Console.WriteLine();
     }
 
     public string ReverseString(string str)
     {
-        // TODO: reverse the given string
-        return "";
+        char[] charArray = str.ToCharArray();
+        Array.Reverse(charArray);
+        return new string(charArray);
     }
 
     public int RecursiveFactorial(int n)
     {
-        // Todo: Implement a recursive method(a method that calls itself within its own function scope)
-        // To Check the factorial of a number(norsk: Fakultet) we look at n!, where n = n * 1 * 2 * 3...
+        if (n < 0)
+            throw new ArgumentException("Factorial is not defined for negative numbers.");
         if (n == 0)
-        {
             return 1;
-        }
-        return n;
+        return n * RecursiveFactorial(n - 1);
     }
-
-
 }
